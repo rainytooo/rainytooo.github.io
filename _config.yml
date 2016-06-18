@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: Vincent Blog
+title: Vincent's Blog
 
 # Short description of your site
 description: Vincent's Blog Site, java python ruby database os, all about coding
@@ -64,7 +64,7 @@ url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
 # --- Misc --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-#disqus: ""
+disqus: "rainytooo"
 
 # Fill in your Google Analytics ID to track your website using GA
 #google_analytics: ""
@@ -76,7 +76,7 @@ timezone: "Asia/Shanghai"
 markdown: kramdown
 highlighter: rouge
 permalink: /:categories/:year/:month/:day/:title.html
-paginate: 5
+paginate: 10
 
 kramdown:
   input: GFM
@@ -153,6 +153,11 @@ prose:
 
 gems:
   - jekyll-paginate
+
+# --  for gategory
+
+category_title_prefix: "的所有文章"
+category_dir: "c"
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189

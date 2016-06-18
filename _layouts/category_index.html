@@ -1,20 +1,25 @@
 ---
 layout: page
-title: Vincent's Blog
-subtitle: 
 ---
+
+<!-- <h2>Category:&nbsp;&nbsp;{{ page.category }}</h2> -->
+
+{% if page.paginator %}
+{% assign paginator = page.paginator %}
+{% endif %}
+
 
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
-	  <h2 class="post-title">{{ post.title }}</h2>
-	
-	  {% if post.subtitle %}
-	  <h3 class="post-subtitle">
-	    {{ post.subtitle }}
-	  </h3>
-	  {% endif %}  
+      <h2 class="post-title">{{ post.title }}</h2>
+    
+      {% if post.subtitle %}
+      <h3 class="post-subtitle">
+        {{ post.subtitle }}
+      </h3>
+      {% endif %}  
     </a>
 
     <p class="post-meta">
@@ -24,7 +29,7 @@ subtitle:
   
     <div class="post-entry">
       {{ post.content | truncatewords: 20 | strip_html | xml_escape}}
-	  <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
+      <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
     </div>
   
    </article>
@@ -45,3 +50,9 @@ subtitle:
   {% endif %}
 </ul>
 {% endif %}
+
+
+
+
+
+
