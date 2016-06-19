@@ -1,6 +1,7 @@
 ---
 layout: post
 title: First Blog
+date: 2016-06-18
 category: nocat
 tags: [wc]
 ---

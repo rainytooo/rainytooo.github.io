@@ -23,7 +23,7 @@ description: Vincent's Blog Site, java python ruby database os, all about coding
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "aboutme"
+  About Me: "about-me"
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
@@ -155,9 +155,12 @@ gems:
   - jekyll-paginate
 
 # --  for gategory
-
 category_title_prefix: "的所有文章"
 category_dir: "c"
+
+# -- for tags
+tag_dir: "tags"
+tag_title_prefix: "的所有文章"
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
