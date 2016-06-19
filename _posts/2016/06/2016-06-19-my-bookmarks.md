@@ -3,11 +3,10 @@ layout: post
 title: My Bookmarks
 subtitle: 收集的一些常用资源
 date: 2016-06-19
-category: bookmark
-#categories: 
-#    - bookmark
-#    - testcate
-tags: [wc]
+categories: 
+    - extra
+    - bookmark
+tags: [wc, bookmark]
 ---
 
 
