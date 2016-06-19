@@ -173,7 +173,45 @@ markdown预览插件
 
 * 没有快捷键 cmd + shift + p 查找以后使用
 
-### 五. Table Editor
+
+### 五. Emmet for Sublime Text
+
+前端利器,不解释了
+
+* [Home page](https://packagecontrol.io/packages/Emmet)
+* 功能: html编辑增强
+
+##### 基本用法 
+
+Available actions
+
+* Expand Abbreviation – Tab or Ctrl+E
+* Interactive “Expand Abbreviation” — Ctrl+Alt+Enter
+* Match Tag Pair Outward – ⌃D (Mac) / Ctrl+, (PC)
+* Match Tag Pair Inward – ⌃J / Shift+Ctrl+0
+* Go to Matching Pair – ⇧⌃T / Ctrl+Alt+J
+* Wrap With Abbreviation — ⌃W / Shift+Ctrl+G
+* Go to Edit Point — Ctrl+Alt+→ or Ctrl+Alt+←
+* Select Item – ⇧⌘. or ⇧⌘, / Shift+Ctrl+. or Shift+Ctrl+,
+* Toggle Comment — ⇧⌥/ / Shift+Ctrl+/
+* Split/Join Tag — ⇧⌘' / Shift+Ctrl+`
+* Remove Tag – ⌘' / Shift+Ctrl+;
+* Update Image Size — ⇧⌃I / Ctrl+U
+* Evaluate Math Expression — ⇧⌘Y / Shift+Ctrl+Y
+* Reflect CSS Value – ⇧⌘R / Shift+Ctrl+R
+* Encode/Decode Image to data:URL – ⇧⌃D / Ctrl+'
+* Rename Tag – ⇧⌘K / Shift+Ctrl+'
+
+Increment/Decrement Number actions:
+
+* Increment by 1: Ctrl+↑
+* Decrement by 1: Ctrl+↓
+* Increment by 0.1: Alt+↑
+* Decrement by 0.1: Alt+↓
+* Increment by 10: ⌥⌘↑ / Shift+Alt+↑
+* Decrement by 10: ⌥⌘↓ / Shift+Alt+↓
+
+### 六. Table Editor
 
 文本文件里表格插件
 
