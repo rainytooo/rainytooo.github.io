@@ -67,7 +67,8 @@ layout: page
 > `github_tag_index.html`
 
 
-```
+{% raw %}
+```html
 ---
 layout: page
 ---
@@ -99,7 +100,7 @@ layout: page
   {% endfor %}
 </div>
 ```
-
+{% endraw %}
 
 ##### 2. 在根目录下为某个标签或者分类建立
 
