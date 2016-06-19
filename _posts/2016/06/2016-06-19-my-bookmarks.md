@@ -1,7 +1,7 @@
 ---
 layout: post
-title: My Bookmarks
-subtitle: 收集的一些常用资源
+title: 常用资源收集
+subtitle: 开发 设计 产品 以及一些通用工具等等资源的收集
 date: 2016-06-19
 categories: 
     - extra
