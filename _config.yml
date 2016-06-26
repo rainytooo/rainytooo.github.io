@@ -30,6 +30,7 @@ navbar-links:
     - 其它: "http://www.wantchalk.com/s/cate/extra/"
     - 未分类: "http://www.wantchalk.com/s/cate/extra/nocat/"
   Coding:
+    - 参考文档: "http://www.wantchalk.com/pages/docs.html"
     - 编辑器IDE: "http://www.wantchalk.com/s/cate/ide/"
   sysadmin:
     - Server: "http://www.wantchalk.com/s/cate/server/"

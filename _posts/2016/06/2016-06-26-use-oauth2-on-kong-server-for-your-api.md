@@ -80,5 +80,165 @@ tags: [kong, rest, oauth2]
 前提条件: kong的server已经准备好了,参考[ubuntu14.04 上kong服务器的搭建](/c/server/2016/06/22/ubuntu1404-kong-server.html)
 
 
+## 一.添加api
 
+这里添加的方式不是host,是request_path
+
+### 请求
+
+```bash
+curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "name=docsapi" -F "upstream_url=http://docs.apiusage.com" -F "request_path=/docs" -F "strip_request_path=true" "http://10.0.0.202:8001/apis/"
+```
+
+### 响应
+
+```json
+{
+  "upstream_url": "http://docs.apiusage.com",
+  "request_path": "/docs",
+  "id": "954b2dfc-e6d5-421b-a796-cd1d751f0af8",
+  "created_at": 1466920233000,
+  "preserve_host": false,
+  "strip_request_path": true,
+  "name": "docsapi"
+}
+```
+
+
+### 添加完以后可以验证一下
+
+```bash
+curl -X GET -H "Cache-Control: no-cache" "http://10.0.0.202:8000/docs/online_docs/linux/rsync/rsync.html"
+```
+
+## 二.为api安装oauth2插件
+
+### 请求
+
+```bash
+curl -X POST -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "name=oauth2" -F "config.token_expiration=720000" -F "config.enable_password_grant=true" -F "config.scopes=email,phone,address" "http://10.0.0.202:8001/apis/docsapi/plugins"
+```
+
+### 响应
+
+```json
+{
+  "api_id": "954b2dfc-e6d5-421b-a796-cd1d751f0af8",
+  "id": "7734b163-721e-430f-9ad9-9dd4c5f47b71",
+  "created_at": 1466927983000,
+  "enabled": true,
+  "name": "oauth2",
+  "config": {
+    "mandatory_scope": false,
+    "token_expiration": 720000,
+    "enable_implicit_grant": false,
+    "scopes": [
+      "email",
+      "phone",
+      "address"
+    ],
+    "hide_credentials": false,
+    "enable_password_grant": true,
+    "accept_http_if_already_terminated": false,
+    "provision_key": "758017a57c4447628546d0d266f92a9b",
+    "enable_client_credentials": false,
+    "enable_authorization_code": true
+  }
+}
+```
+
+
+## 三.添加一个开发者账号
+
+一个开发者账号是可以全站用的
+
+### 请求
+
+```bash
+curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 1636232e-7e6b-3ee5-8e5a-11ac4579f972" -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "username=vincent" -F "custom_id=1" "http://10.0.0.202:8001/consumers"
+
+```
+
+
+### 响应
+
+```json
+{
+  "custom_id": "1",
+  "username": "vincent",
+  "created_at": 1466928362000,
+  "id": "ab7fcd95-fa06-456a-9e4a-b2b701a510de"
+}
+```
+
+## 四.为开发者注册一个应用,用来访问api
+
+
+### 请求
+
+```bash
+curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: b6bf0e87-3d98-e4fb-26f4-4711d61513e0" -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "name=openapidoc" -F "redirect_uri=http://some-domain/endpoint/" "http://10.0.0.202:8001/consumers/ab7fcd95-fa06-456a-9e4a-b2b701a510de/oauth2"
+```
+
+
+### 响应
+
+```json
+{
+  "consumer_id": "ab7fcd95-fa06-456a-9e4a-b2b701a510de",
+  "client_id": "309e682d142147c29f49a83b5498f164",
+  "id": "2523187c-d4a3-4c7d-b35c-2663b2a02822",
+  "created_at": 1466928527000,
+  "redirect_uri": "[\"http:\\/\\/some-domain\\/endpoint\\/\"]",
+  "name": "openapidoc",
+  "client_secret": "2d20985e78424ea5922589db71632769"
+}
+
+```
+
+
+## 五.为一个client已经登录成功的用户生成auth的access_token
+
+这一步的前面还有一些别的步骤,比如认证系统的用户登录认证,就省略了,直接到生成access_token这一步.
+
+
+### 请求
+
+```bash
+curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 8718a5a5-2ff2-bc3f-7e57-70443e86620b" -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "client_id=309e682d142147c29f49a83b5498f164" -F "client_secret=2d20985e78424ea5922589db71632769" -F "scope=phone" -F "provision_key=758017a57c4447628546d0d266f92a9b" -F "authenticated_userid=1" -F "username=vincent" -F "password=123456" -F "grant_type=password" "https://10.0.0.202:8443/docs/oauth2/token"
+```
+
+### 响应
+
+```json
+{
+  "refresh_token": "5ec407d2cfcb42639b642355a916e117",
+  "token_type": "bearer",
+  "access_token": "36651445140a47329e6d0badf14e09aa",
+  "expires_in": 720000
+}
+
+```
+
+## 六.用token来测试访问原有的api
+
+注意,如果是用postman访问,最好先用https在浏览器上访问以下,并忽略未认证证书的警告再来测试.
+
+### 请求
+
+```bash
+curl -X GET -H "Authorization: bearer 36651445140a47329e6d0badf14e09aa" "https://10.0.0.202:8443/docs/online_docs/linux/rsync/rsync.html"
+```
+
+
+成功返回,表示配置成功. 把token换成错误的会得到以下提示.
+
+> {"error_description":"The access token is invalid or has expired","error":"invalid_token"}
+
+如果用http访问,则会得到以下提示.
+
+> {"error_description":"The access token is missing","error":"invalid_request"}
+
+
+至此,一个授权流程和访问api已经结束.
 
