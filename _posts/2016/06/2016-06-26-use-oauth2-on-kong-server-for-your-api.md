@@ -208,6 +208,8 @@ curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: b6bf0e87-3d98-e4fb-
 curl -X POST -H "Cache-Control: no-cache" -H "Postman-Token: 8718a5a5-2ff2-bc3f-7e57-70443e86620b" -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW" -F "client_id=309e682d142147c29f49a83b5498f164" -F "client_secret=2d20985e78424ea5922589db71632769" -F "scope=phone" -F "provision_key=758017a57c4447628546d0d266f92a9b" -F "authenticated_userid=1" -F "username=vincent" -F "password=123456" -F "grant_type=password" "https://10.0.0.202:8443/docs/oauth2/token"
 ```
 
+> 注意,如果有别的oauth认证方式打开,这一步一定要加grant_type,我一开始也没注意一直不成功,看了源码才知道
+
 ### 响应
 
 ```json
