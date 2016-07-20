@@ -15,7 +15,7 @@ tags: [ide, sublime]
 * 标准快捷键
 * 插件安装
 * 插件快捷键
-
+* 我的插件列表
 
 
 
@@ -409,3 +409,11 @@ Compound Textile table cell specifiers:
 
 
 
+# 我的插件列表
+
+* AdvancedNewFile
+* InsertDate
+* KeyMaps
+* Markdow Preview
+* Pretty JSON
+* SideBarEnhancements
