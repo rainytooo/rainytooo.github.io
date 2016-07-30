@@ -417,3 +417,31 @@ Compound Textile table cell specifiers:
 * Markdow Preview
 * Pretty JSON
 * SideBarEnhancements
+
+
+
+# 我的配置
+
+```json
+{
+        "bold_folder_labels": true,
+        "color_scheme": "Packages/Color Scheme - Default/Solarized (Light).tmTheme",
+        "default_encoding": "UTF-8",
+        "font_face": "微软雅黑",
+        "font_size": 10,
+        "highlight_line": true,
+        "ignored_packages":
+        [
+                "Vintage"
+        ],
+        "rulers":
+        [
+                80
+        ],
+        "show_encoding": true,
+        "show_full_path": true,
+        "tab_size": 8,
+        "translate_tabs_to_spaces": true
+}
+
+```
