@@ -11,11 +11,15 @@ categories:
 # content
 
 
+
 ### 1. 安装pyenv
+
+安装pyenv
 
 ```
 brew install pyenv
 ```
+
 
 ### 2. 修改zsh的环境变量
 
@@ -34,11 +38,13 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 exec $SHELL
 ```
 
+
 查看可以安装的python版本
 
 ```
 pyenv install --list
 ```
+
 
 
 ### 4. 安装版本
@@ -87,4 +93,11 @@ pyenv activate mmbox-py
 * https://github.com/yyuu/pyenv/#homebrew-on-mac-os-x
 * http://python.jobbole.com/85587/
 * http://www.cnblogs.com/npumenglei/p/3719412.html
+
+
+安装版本
+
+```
+pyenv install 3.5.2
+```
 
