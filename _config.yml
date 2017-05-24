@@ -34,6 +34,7 @@ navbar-links:
     - 编辑器IDE: "http://www.wantchalk.com/s/cate/ide/"
   sysadmin:
     - Server: "http://www.wantchalk.com/s/cate/server/"
+    - Docker: "http://www.wantchalk.com/s/cate/server/docker/"
 #  Author's home: "http://deanattali.com"
 
 # Image to show in the navigation bar - image must be a square (width = height)
