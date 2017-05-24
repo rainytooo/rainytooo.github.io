@@ -48,14 +48,16 @@ I’m going to bet that most people want the latter. All you want is a solution 
 And the simplest way is to just expose the Docker socket to your CI container, by bind-mounting it with the `-v` flag.
 
 Simply put, when you start your CI container (Jenkins or other), instead of hacking something together with Docker-in-Docker, start it with:
-```
+
+```bash
 docker run -v /var/run/docker.sock:/var/run/docker.sock ...
 ```
+
 Now this container will have access to the Docker socket, and will therefore be able to start containers. Except that instead of starting “child” containers, it will start “sibling” containers.
 
 Try it out, using the `docker` official image (which contains the Docker binary):
 
-```
+```sh
 docker run -v /var/run/docker.sock:/var/run/docker.sock \
            -ti docker
 ```
@@ -98,7 +100,7 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker
 
 ### 插个楼,我再本机上做的实验
 
-```
+```bash
 ➜  jenkins docker run -v /var/run/docker.sock:/var/run/docker.sock \
            -ti docker:17.05
 Unable to find image 'docker:17.05' locally
