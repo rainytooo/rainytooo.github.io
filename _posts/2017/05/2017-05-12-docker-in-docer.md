@@ -6,9 +6,11 @@ categories:
     - docker
 ---
 
-# TODO
+# 目的
 
-* [ ] 制作一个可以build镜像的镜像,jenkins CI服务节点
+制作一个可以build docker镜像的docker镜像,jenkins CI服务节点,部署到阿里云的容器服务集群里.
+
+阿里云官方有完整的镜像,master和slave的都有,时间稍微久远了一点,所以自己研究一下build个最新的版本.
 
 
 # 关于 docker in docker
@@ -165,7 +167,105 @@ fcd7e2089a0d        12c901436f44            "/bin/sh -c 'echo ..."   19 hours ag
 * 1个jenkins agent容器 用来build镜像并推送到镜像仓库
 * 一个python+mysql 编排
 
+# 最后附上我已经配置好的Dockerfile(已经在阿里云的容器里运行)
 
+```
+FROM ubuntu:xenial
+
+MAINTAINER Vincent Wantchalk <ohergal@gmail.com>
+
+RUN apt-get update
+
+
+RUN apt-get -y install wget \ 
+	apt-utils \
+	locales \
+	tzdata \
+	\
+	build-essential \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	git \
+	openssh-server \
+	zlib1g \
+	zlib1g.dev \
+	openssl \
+	libssl-dev \
+	iptables && \
+	rm -rf /var/lib/apt/lists/*
+
+
+RUN locale-gen en_US.UTF-8
+RUN dpkg-reconfigure locales
+
+
+RUN echo "Asia/shanghai" > /etc/timezone
+RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \ 
+	&& dpkg-reconfigure -f noninteractive tzdata 
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+
+
+# To avoid annoying "perl: warning: Setting locale failed." errors,
+# do not allow the client to pass custom locals, see:
+# http://stackoverflow.com/a/2510548/15677
+# RUN sed -i 's/^AcceptEnv LANG LC_\*$//g' /etc/ssh/sshd_config
+
+
+RUN apt-get -q update &&\
+    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends software-properties-common && \
+    add-apt-repository -y ppa:openjdk-r/ppa &&\
+    apt-get -q update &&\
+    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends openjdk-8-jdk && \
+    apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin && \
+	sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd &&\
+	mkdir -p /var/run/sshd
+
+# clean compile tools
+
+RUN apt-get purge -y --auto-remove build-essential libssl-dev
+
+RUN useradd -m -d /home/jenkins -s /bin/bash jenkins && \
+	echo "jenkins:jenkins" | chpasswd
+
+
+# install docker binary files
+
+ENV DOCKER_BUCKET get.docker.com
+ENV DOCKER_VERSION 17.05.0-ce
+ENV DOCKER_SHA256_x86_64 340e0b5a009ba70e1b644136b94d13824db0aeb52e09071410f35a95d94316d9
+ENV DOCKER_SHA256_armel 59bf474090b4b095d19e70bb76305ebfbdb0f18f33aed2fccd16003e500ed1b7
+
+
+RUN curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz" -o docker.tgz \
+	&& echo "${DOCKER_SHA256_x86_64} *docker.tgz" | sha256sum -c - \
+	&& tar -xzvf docker.tgz \
+	&& mv docker/* /usr/local/bin/ \
+	&& rmdir docker \
+	&& rm docker.tgz \
+	&& chmod +x /usr/local/bin/docker 
+#	&& docker -v \
+#	&& docker ps -a
+
+
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+
+# Standard SSH port
+EXPOSE 22
+
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+# Default command
+CMD ["/usr/sbin/sshd", "-D"]
+
+```
 
 ### 参考:
 * [阿里的jenkins的slave镜像,可以build docker](https://github.com/AliyunContainerService/jenkins-slaves?spm=5176.doc42988.2.2.JYbZh8)
