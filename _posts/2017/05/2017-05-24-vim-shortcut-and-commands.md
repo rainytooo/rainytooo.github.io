@@ -7,7 +7,9 @@ categories:
     - vim
 ---
 
-# 一.快捷键
+
+
+# 快捷键和常用命令
 
 * 1.编辑
 * 2.剪贴板
@@ -18,8 +20,9 @@ categories:
 * 7.tab操作
 * 8.关键字补全
 * 9.netrw模式
-* 10.帮助
-* 11.其它
+* 10.折叠
+* 11.帮助
+* 12.垂直编辑
 
 
 ### 1.编辑
@@ -119,11 +122,12 @@ categories:
 
 * `<C-W>v`              水平拆分
 * `<C-W>s`              垂直拆分
-* `<C-w>|`              
-* `<C-w>-`
-* `<C-w>_`
-* `<C-w>=`
-* `<C-w>+`
+* `<C-w>|`              最大化水平窗口
+* `<C-w>_`              最大化垂直窗口
+* `<C-w>-`              垂直减少1行,可以加数字之后跟`-`
+* `<C-w>=`              平均分窗口 
+* `<C-w>+`              垂直增加1行,可以在数字之后跟`+`
+* `:vertical resize 数字` 或者 `:vertical resize +|-数字`来重置当前窗口的大小
 * `:Ex`                 打开目录
 * `:Sex`                在垂直分割的窗口中打开目录
 * `:Vex`                在水平分割的窗口中打开目录
@@ -139,7 +143,7 @@ categories:
 * `n`                   下一个  
 * `N`                   上一个
 * `:nohl` `:noh`或者`:nohlsearch`       搜索结束后,去除高亮.
-
+* `:首行,尾行 s/str1/str2/g`            在指定的范围里搜索并替换
 
 
 ### 7.tab操作
@@ -213,7 +217,24 @@ categories:
 * `%`    在 netrw 当前目录打开新文件                  
 
 
-### 10.帮助
+### 10.折叠
+
+* `zf`     创建折叠的命令，可以在一个可视区域上使用该命令；
+* `zd`     删除当前行的折叠；
+* `zD`     删除当前行的折叠；
+* `zfap`   折叠光标所在的段；
+* `zo`     打开折叠的文本；
+* `zc`     收起折叠；
+* `za`     打开/关闭当前折叠；
+* `zr`     打开嵌套的折行；
+* `zm`     收起嵌套的折行；
+* `zR`     (zO)  打开所有折行；
+* `zM`     (zC)  收起所有折行；
+* `zj`     跳到下一个折叠处；
+* `zk`     跳到上一个折叠处；
+* `zi`     enable/disable fold;
+
+### 11.帮助
 
 * `:help` or `:h`           进入帮助
 * `<C-]>`                   进入一个主题
@@ -224,7 +245,84 @@ categories:
 * `:map <key>`              查询此快捷键
 
 
-### 11.其它
+### 12.垂直编辑
+
+* `<C-v>`                   进入垂直可视化模式
+	- `<S-i>` or `<S-a>`    插入模式,然后插入你想要的字符,最后按两次`ESC`,即可完成垂直批量编辑
+	- `d`                   删除 
+	- `c`                   替换
+
+
+### 13.查看环境变量设置等等
+
+* `:abbreviate`             list abbreviations
+* `:args`                   argument list
+* `:augroup`                augroups
+* `:autocmd`                list auto-commands
+* `:buffers`                list buffers
+* `:breaklist`              list current breakpoints
+* `:cabbrev`                list command mode abbreviations
+* `:changes`                changes
+* `:cmap`                   list command mode maps
+* `:command`                list commands
+* `:compiler`               list compiler scripts
+* `:digraphs`               digraphs
+* `:file`                   print filename, cursor position and status (like Ctrl-G)
+* `:filetype`               on/off settings for filetype detect/plugins/indent
+* `:function`               list user-defined functions (names and argument lists but not the full code)
+* `:function Foo`           user-defined function Foo() (full code list)
+* `:highlight`              highlight groups
+* `:history c`              command history
+* `:history =`              expression history
+* `:history s`              search history
+* `:history`                your commands
+* `:iabbrev`                list insert mode abbreviations
+* `:imap`                   list insert mode maps
+* `:intro`                  the Vim splash screen, with summary version info
+* `:jumps`                  your movements
+* `:language`               current language settings
+* `:let`                    all variables
+* `:let FooBar`             variable FooBar
+* `:let g:`                 global variables
+* `:let v:`                 Vim variables
+* `:list`                   buffer lines (many similar commands)
+* `:lmap`                   language mappings (set by keymap or by lmap)
+* `:ls`                     buffers
+* `:ls!`                    buffers, including "unlisted" buffers
+* `:map!`                   Insert and Command-line mode maps (imap, cmap)
+* `:map`                    Normal and Visual mode maps (nmap, vmap, xmap, smap, omap)
+* `:map<buffer>`            buffer local Normal and Visual mode maps
+* `:map!<buffer>`           buffer local Insert and Command-line mode maps
+* `:marks`                  marks
+* `:menu`                   menu items
+* `:messages`               message history
+* `:nmap`                   Normal-mode mappings only
+* `:omap`                   Operator-pending mode mappings only
+* `:print`                  display buffer lines (useful after :g or with a range)
+* `:reg`                    registers
+* `:scriptnames`            all scripts sourced so far
+* `:set all`                all options, including defaults
+* `:setglobal`              global option values
+* `:setlocal`               local option values
+* `:set`                    options with non-default value
+* `:set termcap`            list terminal codes and terminal keys
+* `:smap`                   Select-mode mappings only
+* `:spellinfo`              spellfiles used
+* `:syntax`                 syntax items
+* `:syn sync`               current syntax sync mode
+* `:tabs`                   tab pages
+* `:tags`                   tag stack contents
+* `:undolist`               leaves of the undo tree
+* `:verbose`                show info about where a map or autocmd or function is defined
+* `:version`                list version and build options
+* `:vmap`                   Visual and Select mode mappings only
+* `:winpos`                 Vim window position (gui)
+* `:xmap`                   visual mode maps only
+
+
+
+
+### 其它
 
 * `:echo @%`            当前文件 
 * `:DiffOrig`           查看当前文件和刚加载的时候的diff
@@ -239,6 +337,9 @@ categories:
 * `g8`                  查看光标处字符的utf-8编码
 * 按`v`键进入选择模式，然后移动光标选择你要的文本，按`u`转小写，按`U`转大写
 * 按`v` 键进入选择模式，然后按h,j,k,l移动光标，选择文本，然后按`y`进行复制,按`p`进行粘贴。
-
-
+* `:set fenc`           查看和设置文件编码
+* `:history c`          查看命令执行的历史
+* `:history =`          表达式历史
+* `:history s`          查找历史
+* `:history`            同history c
 
