@@ -7,7 +7,6 @@ categories:
 ---
 
 
-# tmux
 
 简单的说,tmux给你的terminal会话提供了分组,保存,拆分,切换,标记等等方便的功能,对于经常在term上工作的有很大的帮助,
 比如你经常要开个vim,连接个服务器,还要起一个调试的console,一个运行server的日志窗口,如果一辈子不关机,不掉线应该问题不大,
@@ -104,3 +103,15 @@ if exists('$TMUX')
   set term=screen-256color
 endif
 ```
+
+
+### 合并窗口面板
+
+如果你开了两个窗口,需要显示在一个窗口下,变成2个pane时候
+
+```
+# 先开启命令模式 pre :  , 我这里是Ctrl + b :
+join-pane -s 1.0			# 意思是 把1号窗口里的pane0 移到窗口0里
+join-pane -s 1:2.3			# 意思是把session1的窗口2的pane3移过来
+```
+
