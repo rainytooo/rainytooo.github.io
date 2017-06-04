@@ -110,7 +110,7 @@ endif
 如果你开了两个窗口,需要显示在一个窗口下,变成2个pane时候
 
 ```
-# 先开启命令模式 pre :  , 我这里是Ctrl + b :
+# 先开启命令模式 pre :  , 我这里是<Ctrl-b> + :
 join-pane -s 1.0			# 意思是 把1号窗口里的pane0 移到窗口0里
 join-pane -s 1:2.3			# 意思是把session1的窗口2的pane3移过来
 ```
