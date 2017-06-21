@@ -94,6 +94,7 @@ categories:
         - `=` （只读缓冲区）
         - `+` （已经更改的缓冲区）
 * `:buffer [num]` 或者 `:buffer src/http/ngx_http.c`    直接切换缓冲区文件
+* `num<C-^>`            同上
 * `:bnext`              缩写 :bn
 * `:bprevious`          缩写 :bp
 * `:blast`              缩写 :bl
