@@ -25,7 +25,7 @@ description: Vincent's Blog Site, java python ruby database os, all about coding
 navbar-links:
   About Me: "about-me"
   Extra:
-    - 写文档: "http://www.wantchalk.com/s/cate/writing/"
+    - 写文档: "http://www.wantchalk.com/s/cate/extra/writing/"
     - 收藏: "http://www.wantchalk.com/s/cate/extra/bookmark/"
     - 其它: "http://www.wantchalk.com/s/cate/extra/"
     - 未分类: "http://www.wantchalk.com/s/cate/extra/nocat/"

@@ -10,6 +10,7 @@
 * extra
         - bookmark
         - writing
+        - nocat
 * ide
         - editor
         - idea
