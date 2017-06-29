@@ -100,5 +100,5 @@ password:xxxxxxxxx
 
 
 ```
-python setup.py register sdist upload -r pypi
+python setup.py register sdist upload r pypi
 ```
