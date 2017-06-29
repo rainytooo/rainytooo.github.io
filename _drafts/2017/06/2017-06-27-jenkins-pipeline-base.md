@@ -2,7 +2,7 @@
 layout: post
 title: Jenkins Pipeline 基础
 date: 2017-06-27
-category: [devops, jenkins]
+category: [devops, cicd]
 tags: [jenkins-pipeline, jenkins]
 ---
 

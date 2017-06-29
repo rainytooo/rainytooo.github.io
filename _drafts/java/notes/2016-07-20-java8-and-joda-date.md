@@ -2,7 +2,7 @@
 layout: post
 title: Java8和Joda的日期
 date: 2016-07-20
-category: [language, java, java advanced]
+category: [language, java]
 tags: [java, joda]
 ---
 

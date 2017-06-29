@@ -3,6 +3,24 @@
 始于2016-06-18
 
 
+### 关于分类
+
+目前的分类树
+
+* extra
+        - bookmark
+        - writing
+* ide
+        - editor
+        - idea
+* language
+        - java
+        - python
+* DevOps
+        - server
+        - docker
+        - cicd
+
 ### 信息记录
 
 * 环境 `rvm use 2.3.1@jekyll-blog`

@@ -2,9 +2,7 @@
 layout: post
 title: 为github.io设置自己的域名
 date: 2016-06-18
-categories: 
-    - writing
-    - jekyll
+categories: [extra, writing]
 tags: [jekyll, github]
 ---
 

@@ -2,8 +2,7 @@
 layout: post
 title: Docker里运行Docker docker in docker(dind)
 date: 2017-05-24
-categories: 
-    - docker
+categories: [devops, docker]
 ---
 
 # 目的
