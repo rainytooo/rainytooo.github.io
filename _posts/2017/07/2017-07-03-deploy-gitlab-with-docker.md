@@ -126,7 +126,7 @@ gitlab-ce:
   hostname: 'gitlab-ce-server'
   environment:
     GITLAB_OMNIBUS_CONFIG: |
-      external_url 'https://gitlab.apiusage.com'
+      external_url 'https://gitlab.example.com'
       # Add any other gitlab.rb configuration here, each on its own line
     constraint:aliyun.node_index: 2
   ports:
