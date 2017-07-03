@@ -215,7 +215,7 @@ exec "$@"
 
 不想自己构建镜像的可以直接使用aliyun官方提供的镜像,地址如下
 
-[](https://github.com/AliyunContainerService/jenkins-slaves)
+[https://github.com/AliyunContainerService/jenkins-slaves](https://github.com/AliyunContainerService/jenkins-slaves)
 
 里面有6个agent,包含go,node,java,python,php等等
 
