@@ -263,12 +263,12 @@ jenkins-master:
 ### Jenkins master节点配置 - Credentials
 
 
-1. 添加一个domain
+	1. 添加一个domain
 
 这一步不是必须,但是为了区分,我建立了一个名为`aliyun-container`的domain
 
 
-2. 添加集群的认证,domain为刚建立的`aliyun-container` 类型为`Docker Host Certificate Authentication`,然后将阿里云容器集群里的证书文件依次导入进去
+	2. 添加集群的认证,domain为刚建立的`aliyun-container` 类型为`Docker Host Certificate Authentication`,然后将阿里云容器集群里的证书文件依次导入进去
 
 先去下载你的证书文件
 
@@ -279,18 +279,18 @@ jenkins-master:
 
 <img src="/img/posts/2017/07/20170703190415.png" alt="..." width="600">
 
-3. 添加agent节点的认证,domain为`global`, 类型为`username with password`, 这个是给jenkins的agent节点用的, 密码再dockerfile里初始化好了,为`jenkins`
+	3. 添加agent节点的认证,domain为`global`, 类型为`username with password`, 这个是给jenkins的agent节点用的, 密码再dockerfile里初始化好了,为`jenkins`
 
 这个认证是用来让master可以连接并操作agent的一个linux用户
 
 <img src="/img/posts/2017/07/20170703190450.png" alt="..." width="600">
 
 
-4. 在`aliyun-container`下创建一个`Docker Registery Auth`的认证, 用户名,邮箱 密码都是你推送镜像到阿里云镜像仓库的那个.id填`aliyun-registry-auth`
+	4. 在`aliyun-container`下创建一个`Docker Registery Auth`的认证, 用户名,邮箱 密码都是你推送镜像到阿里云镜像仓库的那个.id填`aliyun-registry-auth`
 
 这个认证可以用来pull和push阿里云镜像仓库上的私有镜像
 
-5. 创建`git`的domain, 创建一个认证,类型为`username with password`, 这个用来在gitlab上拉代码,username用邮箱
+	5. 创建`git`的domain, 创建一个认证,类型为`username with password`, 这个用来在gitlab上拉代码,username用邮箱
 
 这个认证可以用来让jenkins拉取`code.aliyun.com`上的代码
 
