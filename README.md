@@ -17,6 +17,9 @@
 * language
         - java
         - python
+* web
+        - node
+        - react
 * DevOps
         - server
         - docker
