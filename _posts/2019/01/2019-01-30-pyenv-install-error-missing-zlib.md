@@ -5,7 +5,7 @@ subtitle: The Python zlib extension was not compiled. Missing the zlib
 date: 2019-01-30
 category: [language, python]
 tags: [python, brew, pyenv]
-published: false
+published: true
 ---
 
 邻近春节,每年到了这个时候我都要整理一下开发环境, 把该更新的都更新了, 什么编辑器,ide,sdk,等等做一次升级.
